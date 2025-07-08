@@ -6,7 +6,10 @@ import { Footer } from '@/components/layout/footer';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'Comet',
+  title: {
+    default: 'Comet',
+    template: '%s | Comet',
+  },
   description: 'The professional portfolio of a creative programmer.',
 };
 
