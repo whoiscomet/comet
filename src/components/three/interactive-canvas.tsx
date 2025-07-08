@@ -6,6 +6,15 @@ import * as THREE from 'three';
 const InteractiveCanvas = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const mouse = useRef({ x: 0.5, y: 0.5 });
+  const cometState = useRef<{
+    curve: THREE.CubicBezierCurve3 | null;
+    progress: number;
+    speed: number;
+  }>({
+    curve: null,
+    progress: 0,
+    speed: 0,
+  });
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -88,22 +97,45 @@ const InteractiveCanvas = () => {
 
 
     let cometPosition = new THREE.Vector3();
-    let cometVelocity = new THREE.Vector3();
     const cometPath: THREE.Vector3[] = [];
 
     const resetComet = () => {
-        const side = Math.random() > 0.5 ? 1 : -1;
-        const startX = side * 30;
-        const startY = (Math.random() - 0.5) * 20;
-        cometPosition.set(startX, startY, -25);
-        
-        cometVelocity.set(
-            -side * (Math.random() * 0.1 + 0.15), // Move towards center
-            (Math.random() - 0.5) * 0.1,
-            0.02
-        );
-        cometPath.length = 0;
-    }
+      let startX = -35;
+      let endX = 35;
+      
+      if (Math.random() > 0.5) {
+        [startX, endX] = [endX, startX];
+      }
+      
+      const startY = (Math.random() - 0.5) * 25;
+      const endY = (Math.random() - 0.5) * 25;
+      const startZ = -20 - Math.random() * 10;
+      const endZ = startZ;
+
+      const v0 = new THREE.Vector3(startX, startY, startZ);
+      const v3 = new THREE.Vector3(endX, endY, endZ);
+
+      const midX = (startX + endX) / 2;
+      const midY = (startY + endY) / 2;
+
+      const controlPointOffset = 20;
+
+      const v1 = new THREE.Vector3(
+        midX - (endX - startX) * 0.2 + (Math.random() - 0.5) * controlPointOffset,
+        midY + (Math.random() - 0.5) * controlPointOffset * 2,
+        startZ
+      );
+      const v2 = new THREE.Vector3(
+        midX + (endX - startX) * 0.2 + (Math.random() - 0.5) * controlPointOffset,
+        midY + (Math.random() - 0.5) * controlPointOffset * 2,
+        endZ
+      );
+
+      cometState.current.curve = new THREE.CubicBezierCurve3(v0, v1, v2, v3);
+      cometState.current.progress = 0;
+      cometState.current.speed = 0.002 + Math.random() * 0.002;
+      cometPath.length = 0;
+    };
     resetComet();
 
 
@@ -137,9 +169,16 @@ const InteractiveCanvas = () => {
       particlesGeometry.attributes.position.needsUpdate = true;
       
       // Animate comet
-      cometPosition.add(cometVelocity);
-      cometGroup.position.copy(cometPosition);
-      
+      if (cometState.current.curve) {
+        cometState.current.progress += cometState.current.speed;
+        if (cometState.current.progress >= 1) {
+          resetComet();
+        } else {
+          cometState.current.curve.getPoint(cometState.current.progress, cometPosition);
+          cometGroup.position.copy(cometPosition);
+        }
+      }
+
       cometPath.unshift(cometGroup.position.clone().add(new THREE.Vector3(
         (Math.random() - 0.5) * 0.1,
         (Math.random() - 0.5) * 0.1,
@@ -169,12 +208,7 @@ const InteractiveCanvas = () => {
       }
       tailPosAttr.needsUpdate = true;
       tailColorAttr.needsUpdate = true;
-
-      // Reset comet when it's off-screen
-      if (Math.abs(cometPosition.x) > 30 || Math.abs(cometPosition.y) > 20) {
-          resetComet();
-      }
-
+      
       particlesMesh.rotation.y = mouse.current.x * 0.2;
       particlesMesh.rotation.x = -mouse.current.y * 0.2;
       
