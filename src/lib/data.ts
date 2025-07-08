@@ -11,7 +11,7 @@ export const projects: Project[] = [
     image: '/screenshot.png',
     'data-ai-hint': 'website interface',
     images: [
-        '/screenshot.png',
+        '/public/images/portfolio.jpg',
     ],
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Three.js', 'Genkit'],
     githubUrl: 'https://github.com/whoiscomet/comet',
@@ -43,7 +43,7 @@ export const aboutMe = {
     name: 'Comet',
     title: 'Aspiring Software Developer',
     bio: "<p>I'm a passionate and aspiring software developer from India, currently honing my skills in various technologies. With a foundation in C, C++, Python, and web fundamentals like JavaScript, HTML, and CSS, I'm eager to build innovative solutions and grow as a developer.</p><p>I'm actively working on personal projects to expand my knowledge and create exciting applications.</p>",
-    image: '/screenshot.png',
+    image: '/public/images/comet.jpg',
     'data-ai-hint': 'website interface',
 };
 
