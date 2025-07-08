@@ -33,18 +33,6 @@ export const projects: Project[] = [
     liveUrl: '#',
     type: 'custom',
   },
-  {
-    slug: 'ai-story-generator',
-    title: 'AI Story Generator',
-    tagline: 'Unleash your creativity with AI-powered storytelling.',
-    description: 'A fun project that uses generative AI to create short stories based on user prompts. Built with Python and a fine-tuned GPT model.',
-    longDescription: '<p>The AI Story Generator is an experimental application that leverages the power of large language models to generate creative fiction. Users provide a simple prompt, such as a character, a setting, and a situation. The AI then crafts a unique short story. I built this project to explore the creative capabilities of generative AI and worked on fine-tuning a base model to produce more coherent and imaginative narratives.</p>',
-    image: 'https://placehold.co/600x400.png',
-    'data-ai-hint': 'robot writing',
-    tech: ['Python', 'Flask', 'Hugging Face', 'Docker'],
-    githubUrl: 'https://github.com/your-username/your-repo',
-    type: 'custom',
-  },
 ];
 
 export const githubProjects: Project[] = [
@@ -59,20 +47,9 @@ export const githubProjects: Project[] = [
         tech: ['Go', 'Cobra'],
         type: 'github',
     },
-    {
-        slug: 'github-placeholder-2',
-        title: 'Dotfiles',
-        tagline: 'A placeholder for a real GitHub project.',
-        description: 'My personal development environment configuration. This demonstrates my workflow and tool preferences.',
-        longDescription: '',
-        image: 'https://placehold.co/600x400.png',
-        'data-ai-hint': 'desktop setup',
-        tech: ['Shell', 'Vim', 'tmux'],
-        type: 'github',
-    },
 ];
 
-export const featuredProjects = projects.slice(0, 3);
+export const featuredProjects = projects.slice(0, 2);
 
 export const posts: Post[] = [
   {
