@@ -1,5 +1,5 @@
 import type { Project, Post, Skill, Experience } from './types';
-import { Code, Database, Wind, Bot, Layers, BarChart, Book, Briefcase, BrainCircuit } from 'lucide-react';
+import { Code } from 'lucide-react';
 
 export const projects: Project[] = [
   {
@@ -107,41 +107,27 @@ export const posts: Post[] = [
 export const recentPosts = posts.slice(0, 3);
 
 export const skills: Skill[] = [
-    { name: 'TypeScript', icon: Code },
-    { name: 'React / Next.js', icon: Code },
-    { name: 'Node.js', icon: Code },
+    { name: 'C', icon: Code },
+    { name: 'C++', icon: Code },
     { name: 'Python', icon: Code },
-    { name: 'SQL & NoSQL', icon: Database },
-    { name: 'Docker', icon: Layers },
-    { name: 'CI/CD', icon: Wind },
-    { name: 'GenAI / LLMs', icon: BrainCircuit },
+    { name: 'JavaScript', icon: Code },
+    { name: 'HTML', icon: Code },
+    { name: 'CSS', icon: Code },
 ];
 
 export const aboutMe = {
-    name: 'Alex Doe',
-    title: 'Software Engineer & Creative Technologist',
-    bio: "<p>I'm a passionate software engineer with a knack for blending technical problem-solving with creative design. With a background in full-stack web development and a growing interest in creative coding and artificial intelligence, I thrive on building applications that are not only functional and efficient but also engaging and beautiful.</p><p>My journey into programming started with a fascination for how things work, and it has evolved into a career dedicated to crafting seamless digital experiences. I'm a lifelong learner, always exploring new technologies and pushing the boundaries of what's possible on the web.</p>",
+    name: 'Comet',
+    title: 'Aspiring Software Developer',
+    bio: "<p>I'm a passionate and aspiring software developer from India, currently honing my skills in various technologies. With a foundation in C, C++, Python, and web fundamentals like JavaScript, HTML, and CSS, I'm eager to build innovative solutions and grow as a developer.</p><p>I'm actively working on personal projects to expand my knowledge and create exciting applications.</p>",
     image: 'https://placehold.co/400x400.png',
     'data-ai-hint': 'programmer portrait',
 };
 
 export const experiences: Experience[] = [
     {
-        company: 'Tech Solutions Inc.',
-        role: 'Senior Software Engineer',
-        period: '2021 - Present',
-        description: 'Led development of client-facing web applications using React and Node.js. Architected and implemented microservices, improving system scalability and performance by 30%. Mentored junior developers and championed best practices in code quality and testing.',
-    },
-    {
-        company: 'Digital Creations LLC',
-        role: 'Full-Stack Developer',
-        period: '2018 - 2021',
-        description: 'Developed and maintained a variety of client websites and e-commerce platforms using JavaScript, PHP, and various CMS systems. Collaborated with designers to translate visual concepts into functional and responsive web pages.',
-    },
-    {
-        company: 'Innovate Start-up',
-        role: 'Junior Developer',
-        period: '2016 - 2018',
-        description: 'Assisted in the development of a SaaS product, focusing on front-end features and bug fixes. Gained foundational experience in agile methodologies, version control with Git, and building applications with modern web frameworks.',
+        company: 'Personal Projects & Learning',
+        role: 'Computer Science Student',
+        period: '2022 - Present',
+        description: 'Actively learning and applying fundamental concepts of computer science. Building personal projects using C++, Python, and web technologies to solidify my understanding and explore new areas of software development.',
     },
 ];
