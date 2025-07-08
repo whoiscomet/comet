@@ -22,13 +22,13 @@ export default function Home() {
             <Button asChild size="lg">
               <Link href="/projects">View My Work</Link>
             </Button>
-            <Button asChild size="lg" variant="secondary">
-              <Link href="/about">About Me</Link>
-            </Button>
             <Button asChild size="lg" variant="outline">
               <Link href="https://github.com/whoiscomet" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2" /> GitHub
               </Link>
+            </Button>
+            <Button asChild size="lg" variant="secondary">
+              <Link href="/about">About Me</Link>
             </Button>
           </div>
         </div>
