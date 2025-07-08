@@ -14,13 +14,13 @@ export default function Home() {
       <section className="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center text-center overflow-hidden">
         <InteractiveCanvas />
         <div className="relative z-10 p-4">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4 drop-shadow-md font-headline">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4 drop-shadow-md font-headline animate-fade-in" style={{ animationFillMode: 'backwards', animationDelay: '0.2s' }}>
             Comet
           </h1>
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-200 drop-shadow-sm">
+          <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-200 drop-shadow-sm animate-fade-in" style={{ animationFillMode: 'backwards', animationDelay: '0.4s' }}>
             A creative developer weaving elegant code into seamless digital experiences.
           </p>
-          <div className="mt-8 flex justify-center gap-4">
+          <div className="mt-8 flex justify-center gap-4 animate-fade-in" style={{ animationFillMode: 'backwards', animationDelay: '0.6s' }}>
             <Button asChild size="lg">
               <Link href="/projects">View My Work</Link>
             </Button>
@@ -32,7 +32,7 @@ export default function Home() {
       </section>
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 space-y-20">
-        <section id="featured-projects">
+        <section id="featured-projects" className="animate-float-up" style={{ animationFillMode: 'backwards', animationDelay: '0.8s' }}>
           <h2 className="text-3xl font-bold tracking-tight text-center mb-12 font-headline">Featured Projects</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProjects.map((project) => (
@@ -48,7 +48,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="recent-posts">
+        <section id="recent-posts" className="animate-float-up" style={{ animationFillMode: 'backwards', animationDelay: '1s' }}>
           <h2 className="text-3xl font-bold tracking-tight text-center mb-12 font-headline">Recent Blog Posts</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {recentPosts.map((post) => (

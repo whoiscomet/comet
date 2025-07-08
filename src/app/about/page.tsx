@@ -5,12 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 export default function AboutPage() {
   return (
     <div className="container max-w-5xl mx-auto px-4 py-16 sm:py-24">
-      <header className="text-center mb-16">
+      <header className="text-center mb-16 animate-fade-in">
         <h1 className="text-4xl font-bold tracking-tight mb-4 font-headline">About Me</h1>
         <p className="text-xl text-muted-foreground">{aboutMe.title}</p>
       </header>
 
-      <section className="grid md:grid-cols-3 gap-12 items-center mb-20">
+      <section className="grid md:grid-cols-3 gap-12 items-center mb-20 animate-float-up" style={{ animationFillMode: 'backwards', animationDelay: '0.2s' }}>
         <div className="md:col-span-1 flex justify-center">
           <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-lg border-4 border-primary">
             <Image 
@@ -28,7 +28,7 @@ export default function AboutPage() {
         />
       </section>
 
-      <section className="mb-20">
+      <section className="mb-20 animate-float-up" style={{ animationFillMode: 'backwards', animationDelay: '0.4s' }}>
         <h2 className="text-3xl font-bold text-center mb-10 font-headline">My Skills</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           {skills.map((skill) => (
@@ -40,7 +40,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section>
+      <section className="animate-float-up" style={{ animationFillMode: 'backwards', animationDelay: '0.6s' }}>
         <h2 className="text-3xl font-bold text-center mb-12 font-headline">Work Experience</h2>
         <div className="relative border-l-2 border-primary/20 pl-8 space-y-12">
             <div className="absolute w-3 h-3 bg-primary rounded-full -left-[7px] top-1 ring-4 ring-background"></div>

@@ -31,7 +31,7 @@ export default function ProjectDetailsPage({ params }: { params: { slug: string 
   }
 
   return (
-    <div className="container max-w-5xl mx-auto px-4 py-16 sm:py-24">
+    <div className="container max-w-5xl mx-auto px-4 py-16 sm:py-24 animate-fade-in">
       <header className="mb-8">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2 font-headline">{project.title}</h1>
         <p className="text-xl text-muted-foreground" id="tagline-display">{currentTagline}</p>

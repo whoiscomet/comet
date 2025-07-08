@@ -17,7 +17,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <article className="container max-w-4xl mx-auto px-4 py-16 sm:py-24">
+    <article className="container max-w-4xl mx-auto px-4 py-16 sm:py-24 animate-fade-in">
       <header className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 font-headline">{post.title}</h1>
         <time dateTime={post.date} className="text-muted-foreground">
