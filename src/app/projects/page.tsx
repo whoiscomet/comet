@@ -17,21 +17,24 @@ export default function ProjectsPage() {
           <TabsTrigger value="github">From GitHub</TabsTrigger>
         </TabsList>
         <TabsContent value="custom" className="mt-8 animate-float-up" style={{ animationFillMode: 'backwards', animationDelay: '0.2s' }}>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-8 max-w-lg mx-auto">
             {projects.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
         </TabsContent>
         <TabsContent value="github" className="mt-8 animate-float-up" style={{ animationFillMode: 'backwards', animationDelay: '0.2s' }}>
-            <div className="text-center text-muted-foreground mb-8">
-                <p>Live projects from my GitHub profile. (This is placeholder data)</p>
+          {githubProjects.length > 0 ? (
+            <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+              {githubProjects.map((project) => (
+                <GithubProjectCard key={project.slug} project={project} />
+              ))}
             </div>
-          <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
-            {githubProjects.map((project) => (
-              <GithubProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
+          ) : (
+            <div className="text-center text-muted-foreground mt-16">
+              <p>More projects will be added soon from my GitHub profile.</p>
+            </div>
+          )}
         </TabsContent>
       </Tabs>
     </div>

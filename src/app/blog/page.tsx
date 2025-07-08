@@ -9,11 +9,18 @@ export default function BlogPage() {
         <p className="text-lg text-muted-foreground">Thoughts on code, design, and technology.</p>
       </header>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 animate-float-up" style={{ animationFillMode: 'backwards', animationDelay: '0.2s' }}>
-        {posts.map((post) => (
-          <BlogPostCard key={post.slug} post={post} />
-        ))}
-      </div>
+      {posts.length > 0 ? (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 animate-float-up" style={{ animationFillMode: 'backwards', animationDelay: '0.2s' }}>
+          {posts.map((post) => (
+            <BlogPostCard key={post.slug} post={post} />
+          ))}
+        </div>
+       ) : (
+        <div className="text-center text-muted-foreground mt-16 animate-fade-in">
+          <p className="text-xl">No blogs yet.</p>
+          <p>Check back soon!</p>
+        </div>
+      )}
     </div>
   );
 }
