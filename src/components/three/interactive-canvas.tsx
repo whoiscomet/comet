@@ -130,7 +130,7 @@ const InteractiveCanvas = () => {
       
       cometState.current.curve = new THREE.CubicBezierCurve3(v0, v1, v2, v3);
       cometState.current.progress = 0;
-      cometState.current.speed = 0.003 + Math.random() * 0.003;
+      cometState.current.speed = 0.00025 + Math.random() * 0.00025;
       cometPath.length = 0;
     };
     resetComet();
