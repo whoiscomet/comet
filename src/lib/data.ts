@@ -37,6 +37,8 @@ export const skills: Skill[] = [
     { name: 'JavaScript', icon: Code },
     { name: 'HTML', icon: Code },
     { name: 'CSS', icon: Code },
+    { name: 'TypeScript', icon: Code },
+    { name: 'Three.js', icon: Code },
 ];
 
 export const aboutMe = {
