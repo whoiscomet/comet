@@ -2,6 +2,11 @@ import { posts } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { format, parseISO } from 'date-fns';
+import { use } from 'react';
+
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
 
 export async function generateStaticParams() {
   return posts.map((post) => ({
@@ -9,8 +14,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = posts.find((p) => p.slug === params.slug);
+export default function BlogPostPage({ params }: PageProps) {
+  const { slug } = use(params);
+  const post = posts.find((p) => p.slug === slug);
 
   if (!post) {
     notFound();
