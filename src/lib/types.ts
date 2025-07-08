@@ -5,6 +5,7 @@ export interface Project {
   description: string;
   longDescription: string;
   image: string;
+  'data-ai-hint'?: string;
   images?: string[];
   tech: string[];
   githubUrl?: string;
@@ -19,6 +20,7 @@ export interface Post {
   excerpt: string;
   content: string;
   image: string;
+  'data-ai-hint'?: string;
 }
 
 export interface Skill {
