@@ -15,7 +15,7 @@ export default function Home() {
         <InteractiveCanvas />
         <div className="relative z-10 p-4">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4 drop-shadow-md font-headline">
-            Code Canvas
+            Comet
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-200 drop-shadow-sm">
             A creative developer weaving elegant code into seamless digital experiences.
