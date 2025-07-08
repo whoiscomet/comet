@@ -16,7 +16,7 @@ export const projects: Project[] = [
         'https://placehold.co/800x600.png',
     ],
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Three.js', 'Genkit'],
-    githubUrl: 'https://github.com/your-username/your-repo',
+    githubUrl: 'https://github.com/whoiscomet',
     liveUrl: '#',
     type: 'custom',
   },
@@ -29,7 +29,7 @@ export const projects: Project[] = [
     image: 'https://placehold.co/600x400.png',
     'data-ai-hint': 'nature data',
     tech: ['React', 'Firebase', 'Chart.js', 'Node.js'],
-    githubUrl: 'https://github.com/your-username/your-repo',
+    githubUrl: 'https://github.com/whoiscomet',
     liveUrl: '#',
     type: 'custom',
   },
@@ -46,6 +46,7 @@ export const githubProjects: Project[] = [
         'data-ai-hint': 'terminal code',
         tech: ['Go', 'Cobra'],
         type: 'github',
+        githubUrl: 'https://github.com/whoiscomet',
     },
 ];
 
