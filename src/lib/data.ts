@@ -15,7 +15,7 @@ export const projects: Project[] = [
     ],
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Three.js', 'Genkit'],
     githubUrl: 'https://github.com/whoiscomet/comet',
-    liveUrl: '#',
+    liveUrl: 'https://comet-whoiscomet.vercel.app/',
     type: 'custom',
   },
 ];
