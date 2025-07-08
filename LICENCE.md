@@ -1,10 +1,7 @@
-Copyright (c) 2005 whoiscomet
+Copyright (c) 2025 whoiscomet
 
-**=================================================================**
-**=                    PROPRIETARY LICENSE                        =**
-**=================================================================**
+PROPRIETARY LICENSE
 
-This license governs the use of the source code for the website known as Comet.
 
 All rights are reserved by whoiscomet.
 
