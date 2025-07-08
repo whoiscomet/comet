@@ -45,6 +45,21 @@ const InteractiveCanvas = () => {
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particlesMesh);
 
+    // Comet
+    const cometGeometry = new THREE.SphereGeometry(0.15, 32, 32);
+    const cometMaterial = new THREE.MeshBasicMaterial({ 
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.8,
+     });
+    const comet = new THREE.Mesh(cometGeometry, cometMaterial);
+    scene.add(comet);
+
+    let cometPosition = new THREE.Vector3(20, 15, -25);
+    let cometVelocity = new THREE.Vector3(-0.1, -0.07, 0.02);
+    comet.position.copy(cometPosition);
+
+
     const handleMouseMove = (event: MouseEvent) => {
       mouse.current.x = event.clientX / window.innerWidth;
       mouse.current.y = event.clientY / window.innerHeight;
@@ -75,6 +90,19 @@ const InteractiveCanvas = () => {
       }
       particlesGeometry.attributes.position.needsUpdate = true;
       
+      // Animate comet
+      cometPosition.add(cometVelocity);
+      comet.position.copy(cometPosition);
+
+      // Reset comet when it's off-screen
+      if (cometPosition.x < -20 || cometPosition.y < -15) {
+          cometPosition.set(
+              20, // Start from the right
+              (Math.random() - 0.5) * 15, // Random height
+              -25 // Start from behind the particles
+          );
+      }
+
       particlesMesh.rotation.y = mouse.current.x * 0.2;
       particlesMesh.rotation.x = -mouse.current.y * 0.2;
       
