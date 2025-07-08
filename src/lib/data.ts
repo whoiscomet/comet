@@ -43,7 +43,7 @@ export const aboutMe = {
     name: 'Comet',
     title: 'Aspiring Software Developer',
     bio: "<p>I'm a passionate and aspiring software developer from India, currently honing my skills in various technologies. With a foundation in C, C++, Python, and web fundamentals like JavaScript, HTML, and CSS, I'm eager to build innovative solutions and grow as a developer.</p><p>I'm actively working on personal projects to expand my knowledge and create exciting applications.</p>",
-    image: 'images/Comet.jpg',
+    image: '/images/Comet.jpg',
     'data-ai-hint': 'website interface',
 };
 
