@@ -27,13 +27,13 @@ export function ProjectDetailsClient({ project }: { project: Project }) {
               {project.images && project.images.length > 0 ? project.images.map((img, index) => (
                 <CarouselItem key={index}>
                   <div className="relative aspect-video w-full">
-                    <Image src={img} alt={`${project.title} screenshot ${index + 1}`} fill className="object-cover" data-ai-hint={project['data-ai-hint'] || 'project screenshot'} />
+                    <Image src={img} alt={`${project.title} screenshot ${index + 1}`} fill className="object-cover" priority={index === 0} data-ai-hint={project['data-ai-hint'] || 'project screenshot'} />
                   </div>
                 </CarouselItem>
               )) : (
                 <CarouselItem>
                   <div className="relative aspect-video w-full">
-                    <Image src={project.image} alt={project.title} fill className="object-cover" data-ai-hint={project['data-ai-hint'] || 'project code'}/>
+                    <Image src={project.image} alt={project.title} fill className="object-cover" priority data-ai-hint={project['data-ai-hint'] || 'project code'}/>
                   </div>
                 </CarouselItem>
               )}

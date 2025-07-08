@@ -18,6 +18,7 @@ export function ProjectCard({ project }: { project: Project }) {
             alt={project.title}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
+            priority
             data-ai-hint={project['data-ai-hint']}
           />
         </div>

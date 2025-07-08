@@ -18,6 +18,7 @@ export default function AboutPage() {
               alt={aboutMe.name} 
               fill 
               className="object-cover" 
+              priority
               data-ai-hint={aboutMe['data-ai-hint']}
             />
           </div>
