@@ -46,18 +46,51 @@ const InteractiveCanvas = () => {
     scene.add(particlesMesh);
 
     // Comet
-    const cometGeometry = new THREE.SphereGeometry(0.15, 32, 32);
-    const cometMaterial = new THREE.MeshBasicMaterial({ 
-        color: 0xffffff,
+    const cometGroup = new THREE.Group();
+    scene.add(cometGroup);
+
+    // Comet Head
+    const headGeometry = new THREE.SphereGeometry(0.2, 32, 16);
+    const headMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const cometHead = new THREE.Mesh(headGeometry, headMaterial);
+    cometGroup.add(cometHead);
+    
+    // Comet Tail
+    const tailLength = 100;
+    const tailParticlesCount = tailLength;
+    const tailGeometry = new THREE.BufferGeometry();
+    const tailPositions = new Float32Array(tailParticlesCount * 3);
+    tailGeometry.setAttribute('position', new THREE.BufferAttribute(tailPositions, 3));
+    
+    const tailMaterial = new THREE.PointsMaterial({
+        color: 0x77aaff,
+        size: 0.1,
+        blending: THREE.AdditiveBlending,
         transparent: true,
         opacity: 0.8,
-     });
-    const comet = new THREE.Mesh(cometGeometry, cometMaterial);
-    scene.add(comet);
+        depthWrite: false,
+    });
+    const cometTail = new THREE.Points(tailGeometry, tailMaterial);
+    cometGroup.add(cometTail);
 
-    let cometPosition = new THREE.Vector3(20, 15, -25);
-    let cometVelocity = new THREE.Vector3(-0.1, -0.07, 0.02);
-    comet.position.copy(cometPosition);
+    let cometPosition = new THREE.Vector3();
+    let cometVelocity = new THREE.Vector3();
+    const cometPath: THREE.Vector3[] = [];
+
+    const resetComet = () => {
+        const side = Math.random() > 0.5 ? 1 : -1;
+        const startX = side * 30;
+        const startY = (Math.random() - 0.5) * 20;
+        cometPosition.set(startX, startY, -25);
+        
+        cometVelocity.set(
+            -side * (Math.random() * 0.1 + 0.15), // Move towards center
+            (Math.random() - 0.5) * 0.1,
+            0.02
+        );
+        cometPath.length = 0;
+    }
+    resetComet();
 
 
     const handleMouseMove = (event: MouseEvent) => {
@@ -73,7 +106,6 @@ const InteractiveCanvas = () => {
     };
     window.addEventListener('resize', handleResize);
 
-    const clock = new THREE.Clock();
     const animate = () => {
       requestAnimationFrame(animate);
 
@@ -92,15 +124,27 @@ const InteractiveCanvas = () => {
       
       // Animate comet
       cometPosition.add(cometVelocity);
-      comet.position.copy(cometPosition);
+      cometGroup.position.copy(cometPosition);
+      
+      cometPath.unshift(cometGroup.position.clone());
+      if (cometPath.length > tailLength) {
+        cometPath.pop();
+      }
+
+      const tailPosAttr = cometTail.geometry.attributes.position as THREE.BufferAttribute;
+      for (let i = 0; i < tailParticlesCount; i++) {
+        const point = cometPath[i];
+        if (point) {
+          tailPosAttr.setXYZ(i, point.x - cometGroup.position.x, point.y - cometGroup.position.y, point.z - cometGroup.position.z);
+        } else {
+          tailPosAttr.setXYZ(i, 0, 0, -10000); // Hide unused particles
+        }
+      }
+      tailPosAttr.needsUpdate = true;
 
       // Reset comet when it's off-screen
-      if (cometPosition.x < -20 || cometPosition.y < -15) {
-          cometPosition.set(
-              20, // Start from the right
-              (Math.random() - 0.5) * 15, // Random height
-              -25 // Start from behind the particles
-          );
+      if (Math.abs(cometPosition.x) > 30 || Math.abs(cometPosition.y) > 20) {
+          resetComet();
       }
 
       particlesMesh.rotation.y = mouse.current.x * 0.2;
