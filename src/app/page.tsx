@@ -16,7 +16,7 @@ export default function Home() {
             Comet
           </h1>
           <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-200 drop-shadow-sm animate-fade-in" style={{ animationFillMode: 'backwards', animationDelay: '0.4s' }}>
-            A creative developer weaving elegant code into seamless digital experiences.
+            Hi, I'm a programmer. I love solving problems and building things for the web.
           </p>
           <div className="mt-8 flex justify-center gap-4 flex-wrap animate-fade-in" style={{ animationFillMode: 'backwards', animationDelay: '0.6s' }}>
             <Button asChild size="lg">
