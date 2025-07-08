@@ -49,29 +49,43 @@ const InteractiveCanvas = () => {
     const cometGroup = new THREE.Group();
     scene.add(cometGroup);
 
-    // Comet Head
-    const headGeometry = new THREE.SphereGeometry(0.2, 32, 16);
+    // Comet Head Glow
+    const glowGeometry = new THREE.SphereGeometry(0.3, 32, 16);
+    const glowMaterial = new THREE.MeshBasicMaterial({
+        color: 0x77aaff,
+        transparent: true,
+        opacity: 0.3,
+        blending: THREE.AdditiveBlending,
+    });
+    const cometGlow = new THREE.Mesh(glowGeometry, glowMaterial);
+    cometGroup.add(cometGlow);
+
+    // Comet Head Core
+    const headGeometry = new THREE.SphereGeometry(0.1, 32, 16);
     const headMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
     const cometHead = new THREE.Mesh(headGeometry, headMaterial);
     cometGroup.add(cometHead);
     
     // Comet Tail
-    const tailLength = 100;
+    const tailLength = 150;
     const tailParticlesCount = tailLength;
     const tailGeometry = new THREE.BufferGeometry();
     const tailPositions = new Float32Array(tailParticlesCount * 3);
+    const tailColors = new Float32Array(tailParticlesCount * 3);
+    
     tailGeometry.setAttribute('position', new THREE.BufferAttribute(tailPositions, 3));
+    tailGeometry.setAttribute('color', new THREE.BufferAttribute(tailColors, 3));
     
     const tailMaterial = new THREE.PointsMaterial({
-        color: 0x77aaff,
-        size: 0.1,
+        size: 0.08,
+        vertexColors: true,
         blending: THREE.AdditiveBlending,
         transparent: true,
-        opacity: 0.8,
         depthWrite: false,
     });
     const cometTail = new THREE.Points(tailGeometry, tailMaterial);
     cometGroup.add(cometTail);
+
 
     let cometPosition = new THREE.Vector3();
     let cometVelocity = new THREE.Vector3();
@@ -126,21 +140,35 @@ const InteractiveCanvas = () => {
       cometPosition.add(cometVelocity);
       cometGroup.position.copy(cometPosition);
       
-      cometPath.unshift(cometGroup.position.clone());
+      cometPath.unshift(cometGroup.position.clone().add(new THREE.Vector3(
+        (Math.random() - 0.5) * 0.1,
+        (Math.random() - 0.5) * 0.1,
+        0
+      )));
+
       if (cometPath.length > tailLength) {
         cometPath.pop();
       }
 
       const tailPosAttr = cometTail.geometry.attributes.position as THREE.BufferAttribute;
+      const tailColorAttr = cometTail.geometry.attributes.color as THREE.BufferAttribute;
+      const baseColor = new THREE.Color(0x77aaff);
+
       for (let i = 0; i < tailParticlesCount; i++) {
         const point = cometPath[i];
         if (point) {
           tailPosAttr.setXYZ(i, point.x - cometGroup.position.x, point.y - cometGroup.position.y, point.z - cometGroup.position.z);
+          
+          const fade = 1.0 - (i / tailLength);
+          const fadedColor = baseColor.clone().multiplyScalar(fade * fade);
+          
+          tailColorAttr.setXYZ(i, fadedColor.r, fadedColor.g, fadedColor.b);
         } else {
           tailPosAttr.setXYZ(i, 0, 0, -10000); // Hide unused particles
         }
       }
       tailPosAttr.needsUpdate = true;
+      tailColorAttr.needsUpdate = true;
 
       // Reset comet when it's off-screen
       if (Math.abs(cometPosition.x) > 30 || Math.abs(cometPosition.y) > 20) {
