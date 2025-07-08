@@ -100,37 +100,34 @@ const InteractiveCanvas = () => {
     const cometPath: THREE.Vector3[] = [];
 
     const resetComet = () => {
-      let startX = -35;
-      let endX = 35;
-      
-      if (Math.random() > 0.5) {
-        [startX, endX] = [endX, startX];
-      }
-      
-      const startY = (Math.random() - 0.5) * 25;
-      const endY = (Math.random() - 0.5) * 25;
-      const startZ = -20 - Math.random() * 10;
-      const endZ = startZ;
+      // Comet starts in the distance and moves towards the camera
+      const startX = (Math.random() - 0.5) * 20;
+      const startY = (Math.random() - 0.5) * 20;
+      const startZ = -30;
+
+      // It will end closer to the camera
+      const endX = (Math.random() - 0.5) * 10;
+      const endY = (Math.random() - 0.5) * 10;
+      const endZ = 8; // Camera is at 10, so this is very close
 
       const v0 = new THREE.Vector3(startX, startY, startZ);
       const v3 = new THREE.Vector3(endX, endY, endZ);
 
-      const midX = (startX + endX) / 2;
-      const midY = (startY + endY) / 2;
-
-      const controlPointOffset = 20;
+      // Control points to make the path curved
+      const midZ = (startZ + endZ) / 2;
+      const controlPointOffset = 15;
 
       const v1 = new THREE.Vector3(
-        midX - (endX - startX) * 0.2 + (Math.random() - 0.5) * controlPointOffset,
-        midY + (Math.random() - 0.5) * controlPointOffset * 2,
-        startZ
+        (startX + endX) / 2 + (Math.random() - 0.5) * controlPointOffset,
+        (startY + endY) / 2 + (Math.random() - 0.5) * controlPointOffset,
+        midZ + (Math.random() - 0.5) * 10
       );
       const v2 = new THREE.Vector3(
-        midX + (endX - startX) * 0.2 + (Math.random() - 0.5) * controlPointOffset,
-        midY + (Math.random() - 0.5) * controlPointOffset * 2,
-        endZ
+        (startX + endX) / 2 + (Math.random() - 0.5) * controlPointOffset,
+        (startY + endY) / 2 + (Math.random() - 0.5) * controlPointOffset,
+        midZ + (Math.random() - 0.5) * 10
       );
-
+      
       cometState.current.curve = new THREE.CubicBezierCurve3(v0, v1, v2, v3);
       cometState.current.progress = 0;
       cometState.current.speed = 0.002 + Math.random() * 0.002;
