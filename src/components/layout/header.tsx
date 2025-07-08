@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Rocket, Menu, X } from 'lucide-react';
+import { Sparkles, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -37,7 +37,7 @@ export function Header() {
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Rocket className="h-6 w-6 text-primary" />
+            <Sparkles className="h-6 w-6 text-primary" />
             <span className="font-bold">Comet</span>
           </Link>
         </div>
@@ -63,7 +63,7 @@ export function Header() {
                 </SheetHeader>
                 <div className="p-4">
                   <Link href="/" className="flex items-center space-x-2 mb-8" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Rocket className="h-6 w-6 text-primary" />
+                    <Sparkles className="h-6 w-6 text-primary" />
                     <span className="font-bold">Comet</span>
                   </Link>
                   <nav className="flex flex-col gap-6 text-lg font-medium">
