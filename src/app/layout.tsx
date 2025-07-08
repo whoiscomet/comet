@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     default: 'Comet',
     template: '%s | Comet',
   },
-  description: 'The professional portfolio of a creative programmer.',
+  description: 'A Official Portfolio For Comet.',
 };
 
 export default function RootLayout({
