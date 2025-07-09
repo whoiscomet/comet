@@ -67,7 +67,7 @@ This project is built with a selection of modern and powerful technologies to de
 
 This is a personal portfolio project, and as such, direct contributions are generally not sought. However, if you have suggestions or find a bug, feel free to open an issue!
 
-Please note that use of the source code is restricted by the license. You are permitted to clone and modify the code for the sole purpose of submitting a "Contribution" as defined in the [LICENSE.md](LICENSE.md) file, but not for any other use.
+Please note that use of the source code is restricted by the license. You are permitted to clone and modify the code for the sole purpose of submitting a "Contribution" as defined in the [LICENSE.md](LICENCE.md) file, but not for any other use.
 
 ---
 
